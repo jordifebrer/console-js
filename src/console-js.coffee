@@ -1,21 +1,23 @@
-oldConsole = console
-console = {}
+console._log = console.log
+console._info = console.info
+console._warn = console.warn
+console._error = console.error
 
 console.log = (obj, title=false, breakPoint=false) ->
-  console._out obj, title, breakPoint, 'log'
+  console._out obj, title, breakPoint, '_log'
 
 console.info = (obj, title=false, breakPoint=false) ->
-  console._out obj, title, breakPoint, 'info'
+  console._out obj, title, breakPoint, '_info'
 
 console.warn = (obj, title=false, breakPoint=false) ->
-  console._out obj, title, breakPoint, 'warn'
+  console._out obj, title, breakPoint, '_warn'
 
 console.error = (obj, title=false, breakPoint=false) ->
-  console._out obj, title, breakPoint, 'error'
+  console._out obj, title, breakPoint, '_error'
 
 console._out = (obj, title, breakPoint, type) ->
-    oldConsole.group if title then title else obj
-    oldConsole[type] obj
-    oldConsole.groupEnd()
+    console.group if title then title else obj
+    console[type] obj
+    console.groupEnd()
     if breakPoint
       debugger
