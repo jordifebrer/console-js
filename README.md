@@ -7,7 +7,7 @@
 Install the component using [Bower](http://bower.io/):
 
 ```sh
-$ bower install console-js --save
+$ bower install consolejs --save
 ```
 
 Or [download as ZIP](https://github.com/jordifebrer/console-js/archive/master.zip).
