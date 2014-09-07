@@ -2,6 +2,7 @@ console._log = console.log
 console._info = console.info
 console._warn = console.warn
 console._error = console.error
+console._table = console.table
 console._logs = []
 
 console.log = (obj, title=false, breakPoint=false) ->
@@ -15,6 +16,9 @@ console.warn = (obj, title=false, breakPoint=false) ->
 
 console.error = (obj, title=false, breakPoint=false) ->
   console._out obj, title, breakPoint, '_error'
+
+console.table = (obj, title=false, breakPoint=false) ->
+  console._out obj, title, breakPoint, '_table'
 
 console.all = () ->
   console.group 'All logs:'
@@ -31,7 +35,10 @@ console._out = (obj, title, breakPoint, type) ->
     type: type
   }
   console.group header
-  console[type] obj
+  if typeof console[type] is 'function'
+    console[type] obj
+  else 
+    console._log obj
   console.groupEnd()
   if breakPoint
     debugger
